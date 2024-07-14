@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile
 from .forms import ProfileForm
-from django.contrib.auth.models import User
 
 def profile(request):
     if request.method == 'POST':
@@ -11,6 +9,10 @@ def profile(request):
             return redirect('profile')
     
     form = ProfileForm(instance=request.user.profile)
-    return render(request, "registration\profile.html", {"profile": form})
+    context = {"form": form}
+    return render(request, "registration\profile.html", context)
+
+
+
 
 # Create your views here.

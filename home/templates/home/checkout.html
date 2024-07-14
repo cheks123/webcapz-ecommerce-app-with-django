@@ -1,0 +1,29 @@
+{% extends "home/home2.html" %}
+
+{% block main %}
+<div>
+    <h1>CHECKOUT</h1>
+
+    <table>
+        <thead><td>Name</td><td>Quantity</td><td>Price</td></thead>
+        {% for item in products %}
+        <tr>
+            <td>{{ item.product.name  }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td>{{ total_price }}</td>
+        </tr>
+
+    </table>
+    <form>
+        {{ form }}
+        <input type="submit" value="Place an Order">
+    </form>
+</div>
+
+{% endblock %}

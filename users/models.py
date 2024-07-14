@@ -6,7 +6,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_picture', blank=True, null=True)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.user.username
 
 # Create your models here.

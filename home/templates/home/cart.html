@@ -10,10 +10,10 @@
         <p>Price: {{ item.price }}</p>
         <p><a href="{% url 'remove_from_cart' item.id %}" style="color:black" class="btn btn-outline-dark">Remove From Cart</a></p>
         
-        <!--<p><a href="{% url 'remove_from_cart' item.id %}" style="color:black">Remove From Cart</a></p>-->
+
         
     </div>
 {% endfor %}
-<p>Total Price: N{{ total_price }}</p>
-<a href="">Checkout</a>
+<p style="display:block">Total Price: N{{ total_price }}</p>
+<a href="{% url 'checkout' %}">Checkout</a>
 {% endblock %}

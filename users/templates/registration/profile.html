@@ -3,7 +3,7 @@
 {% block main %}
     <form method="post">
         {% csrf_token %}
-        {{ profile }}
+        {{ form }}
         <input type="submit" value="Update">
     </form>
 {% endblock %}

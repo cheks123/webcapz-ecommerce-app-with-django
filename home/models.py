@@ -15,15 +15,6 @@ class Product(models.Model):
 
 
 
-# class CartItem(models.Model):
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     quantity = models.IntegerField(default=0)
-
-#     def __self__(self):
-#         return self.product.name
-
-
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -33,6 +24,18 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=150)
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=11)
+    product=models.CharField(max_length=150)
+    quantity=models.IntegerField(default=0)
+    price=models.FloatField(default=0.0)
+
+
 
 
 
