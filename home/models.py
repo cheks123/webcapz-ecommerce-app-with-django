@@ -35,6 +35,9 @@ class Order(models.Model):
     quantity=models.IntegerField(default=0)
     price=models.FloatField(default=0.0)
 
+    def __str__(self):
+        return self.product
+
 
 
 

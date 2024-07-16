@@ -34,6 +34,7 @@
                             </ul>
                         </li>
                         {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Add Product</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">{{user.username }}</a></li>
                             <li>
 
@@ -74,7 +75,8 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% block main %}
-                    {% for product in products %}
+                    <div class="col">
+                    {% for product in page_obj.object_list %}
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
@@ -85,7 +87,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
@@ -110,6 +112,17 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div>
+                        {%if page_obj.has_previous %}
+                            <a href="?p={{page_obj.previous_page_number}}">Previous</a> 
+                        {% endif %}
+                        <span>{{page_obj.number}}</span> 
+                       
+                        {%if page_obj.has_next %} 
+                            <a href="?p={{page_obj.next_page_number}}">Next</a>
+                        {% endif %}
+                    </div>
+                </div>
                     {% endblock %}
                     
                 </div>

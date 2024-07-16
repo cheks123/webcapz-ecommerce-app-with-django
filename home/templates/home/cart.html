@@ -1,7 +1,9 @@
 {% extends 'home/home2.html' %}
 
 {% block main %}
+<div>
 {% for item in cart_items %}
+
     <div>
         <img src="{{ item.product.image.url }}">
         <P>{{ item.product.name }}</P>
@@ -16,4 +18,5 @@
 {% endfor %}
 <p style="display:block">Total Price: N{{ total_price }}</p>
 <a href="{% url 'checkout' %}">Checkout</a>
+</div>
 {% endblock %}

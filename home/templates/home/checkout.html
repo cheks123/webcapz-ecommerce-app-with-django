@@ -20,7 +20,8 @@
         </tr>
 
     </table>
-    <form>
+    <form method="post">
+        {% csrf_token %}
         {{ form }}
         <input type="submit" value="Place an Order">
     </form>
