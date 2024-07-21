@@ -3,7 +3,6 @@ from .models import Product, CartItem, Order
 from .forms import ProductForm, RegistrationForm, OrderForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def home(request):
