@@ -4,6 +4,8 @@ from .forms import ProductForm, RegistrationForm, OrderForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.mail import send_mail
+from django.conf import settings
 
 def home(request):
     products = Product.objects.all()
@@ -111,7 +113,7 @@ def remove_from_cart(request, id):
     cart_item.delete()
     return redirect('view_cart')
 
-
+@login_required(login_url="login")
 def checkout(request):
     if request.method == "POST":
         cart_items = CartItem.objects.filter(user=request.user)
@@ -125,7 +127,8 @@ def checkout(request):
             order.price = item.price
             order.product = item.product.name
             order.save()
-        
+        message = f"Dear Chekwube,\n {request.POST.get("name")} placed order(s). Please check the database to fulfill the order."
+        send_mail("Orders | Webcapz Ecommerce Limited", message, settings.EMAIL_HOST_USER, ["chekwubeutomi@gmail.com"])
         for item in cart_items:
             item.delete()
         
